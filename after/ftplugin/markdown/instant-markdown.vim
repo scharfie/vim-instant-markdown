@@ -1,6 +1,6 @@
 " # Configuration
 if !exists('g:instant_markdown_slow')
-    let g:instant_markdown_slow = 0
+    let g:instant_markdown_slow =  1
 endif
 
 if !exists('g:instant_markdown_autostart')
@@ -104,7 +104,7 @@ fu! s:previewMarkdown()
   call s:startDaemon(join(getline(1, '$'), "\n"))
   aug instant-markdown
     if g:instant_markdown_slow
-      au CursorHold,BufWrite,InsertLeave <buffer> call s:temperedRefresh()
+      au BufWrite,InsertLeave <buffer> call s:temperedRefresh()
     else
       au CursorHold,CursorHoldI,CursorMoved,CursorMovedI <buffer> call s:temperedRefresh()
     endif
